@@ -1,0 +1,57 @@
+{
+  "name": "ts-dg600f",
+  "version": "0.0.1",
+  "description": "NodeJS library to work with DG600F coin acceptor. Written in Typescript.",
+  "main": "index.js",
+  "engines": {
+    "node": ">=8.0.0",
+    "npm": ">=6.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:clean": "npm run clean && npm run build",
+    "prepack": "npm run build:clean",
+    "watch": "tsc -w",
+    "lint": "npm run lint:tsc && npm run lint:tslint",
+    "lint:tsc": "tsc -p tsconfig.json --noEmit",
+    "lint:tslint": "tslint -c tslint.json -p tsconfig.json --fix",
+    "lint:prettier": "prettier --write \"{src,test}/**/*.ts*\"",
+    "commit": "commit-prompt --no-verify",
+    "precommit": "lint-staged && npm run lint",
+    "test": "jest --detectOpenHandles",
+    "test:unit": "jest --detectOpenHandles --testPathPattern \"src/.+spec.tsx?$\"",
+    "test:e2e": "jest --detectOpenHandles --testPathPattern \"__tests__/.+.tsx?\"",
+    "test:ci": "jest --detectOpenHandles --coverage",
+    "clean": "rimraf '{src,__tests__}/**/*.js?(x)?(.map)'",
+    "release": "./extra/deployment/release.sh",
+    "postrelease": "npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goooseman/ts-dg600f.git"
+  },
+  "keywords": [
+    "dg600f",
+    "serialport",
+    "coin acceptor"
+  ],
+  "author": "goooseman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/goooseman/ts-dg600f/issues"
+  },
+  "homepage": "https://github.com/goooseman/ts-dg600f",
+  "devDependencies": {
+    "@types/jest": "^24.0.0",
+    "@types/node": "^10.14.17",
+    "jest": "^24.9.0",
+    "prettier-config-trucknet-io": "^2.0.1",
+    "rimraf": "^3.0.0",
+    "trucknet-commit": "^1.5.0",
+    "ts-jest": "^24.0.0",
+    "tslint": "^5.19.0",
+    "tslint-config-trucknet-io": "^1.8.0",
+    "typescript": "^3.6.2"
+  },
+  "dependencies": {}
+}
