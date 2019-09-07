@@ -8,6 +8,7 @@
   },
   "editor.formatOnSave": true,
   "debug.node.autoAttach": "on",
+  "editor.tabSize": 2,
   "jest.debugCodeLens.showWhenTestStateIn": ["fail", "unknown", "pass", "skip"],
   "jest.pathToJest": "npx jest --coverage",
   "jest.showCoverageOnLoad": true
