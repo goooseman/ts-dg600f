@@ -6,7 +6,7 @@ export type DG600FOptions = {
    */
   device: string;
   /**
-   * Default is 9600
+   * Default is 4800
    */
   baudRate?: OpenOptions["baudRate"];
   /**

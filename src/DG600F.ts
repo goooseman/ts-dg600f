@@ -10,7 +10,7 @@ class DG600F extends EventEmitter {
   constructor(options: DG600FOptions) {
     super();
     this.options = {
-      baudRate: 9600,
+      baudRate: 4800,
       dataBits: 8,
       stopbits: 2,
       parity: "none",
@@ -36,6 +36,7 @@ class DG600F extends EventEmitter {
       dataBits: this.options.dataBits,
       stopBits: this.options.stopbits,
       parity: this.options.parity,
+      autoOpen: false,
     });
 
     this.socket.on("close", () => {
@@ -46,10 +47,9 @@ class DG600F extends EventEmitter {
       this.emit("error", err);
     });
 
-    const parser = this.socket.pipe(new ByteLength({ length: 3 }));
+    const parser = this.socket.pipe(new ParserByteLength({ length: 3 }));
     parser.on("data", this.handleData);
-
-    await promisify(this.socket.open)();
+    this.socket.open();
     this.emit("ready");
   }
 
