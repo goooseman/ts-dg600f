@@ -8,8 +8,8 @@ const start = async () => {
     device: "/dev/tty.SLAB_USBtoUART", //device address, use 'npx @serialport/list' to get a list
   });
 
-  dg600f.on("coin", (coint: number) => {
-    console.log("Coin is accepted");
+  dg600f.on("coin", (coin: number) => {
+    console.log("Coin is accepted", coin);
   });
 
   dg600f.on("error", console.error);
