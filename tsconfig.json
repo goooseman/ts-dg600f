@@ -11,10 +11,8 @@
     "target": "es2017",
     "lib": ["es2017", "dom"],
     "baseUrl": ".",
-    "paths": {
-      "@src/*": ["src/*"]
-    },
-    "typeRoots": ["node_modules/@types", "./definitions"]
+    "typeRoots": ["node_modules/@types", "./@types"],
+    "esModuleInterop": true
   },
   "include": ["definitions/**/*.d.ts", "src/**/*", "__tests__/**/*"]
 }

@@ -1,6 +1,6 @@
 {
   "name": "ts-dg600f",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "NodeJS library to work with DG600F coin acceptor. Written in Typescript.",
   "main": "index.js",
   "engines": {
@@ -17,7 +17,7 @@
     "lint:tslint": "tslint -c tslint.json -p tsconfig.json --fix",
     "lint:prettier": "prettier --write \"{src,test}/**/*.ts*\"",
     "commit": "commit-prompt --no-verify",
-    "precommit": "lint-staged && npm run lint",
+    "precommit": "lint-staged",
     "test": "jest --detectOpenHandles",
     "test:unit": "jest --detectOpenHandles --testPathPattern \"src/.+spec.tsx?$\"",
     "test:e2e": "jest --detectOpenHandles --testPathPattern \"__tests__/.+.tsx?\"",
@@ -44,6 +44,7 @@
   "devDependencies": {
     "@types/jest": "^24.0.0",
     "@types/node": "^10.14.17",
+    "@types/serialport": "^7.0.4",
     "jest": "^24.9.0",
     "prettier-config-trucknet-io": "^2.0.1",
     "rimraf": "^3.0.0",
@@ -53,5 +54,8 @@
     "tslint-config-trucknet-io": "^1.8.0",
     "typescript": "^3.6.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@serialport/parser-byte-length": "^2.0.2",
+    "serialport": "^7.1.5"
+  }
 }
