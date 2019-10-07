@@ -1,8 +1,8 @@
 {
   "name": "ts-dg600f",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "NodeJS library to work with DG600F coin acceptor. Written in Typescript.",
-  "main": "index.js",
+  "main": "src/index.js",
   "engines": {
     "node": ">=8.0.0",
     "npm": ">=6.0.0"
