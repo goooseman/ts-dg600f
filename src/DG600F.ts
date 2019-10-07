@@ -1,4 +1,4 @@
-import parserByteLength from "@serialport/parser-byte-length";
+import ParserByteLength from "@serialport/parser-byte-length";
 import { EventEmitter } from "events";
 import Serialport from "serialport";
 import { promisify } from "util";
