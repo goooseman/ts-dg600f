@@ -6,7 +6,8 @@
       true,
       null,
       {
-        "serialport": "Serialport"
+        "serialport": "Serialport",
+        "@serialport/parser-byte-length": "ParserByteLength"
       },
       null,
       {}
