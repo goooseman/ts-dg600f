@@ -1,7 +1,6 @@
 import ParserByteLength from "@serialport/parser-byte-length";
 import { EventEmitter } from "events";
 import Serialport from "serialport";
-import { promisify } from "util";
 import { DG600FOptions } from "./types";
 
 class DG600F extends EventEmitter {
@@ -28,7 +27,7 @@ class DG600F extends EventEmitter {
 
   public async start() {
     if (this.socket) {
-      await promisify(this.socket.close)();
+      await this.close();
     }
 
     this.socket = new Serialport(this.options.device, {
@@ -49,15 +48,37 @@ class DG600F extends EventEmitter {
 
     const parser = this.socket.pipe(new ParserByteLength({ length: 3 }));
     parser.on("data", this.handleData);
-    this.socket.open();
+    const openAsync = (socket: Serialport) =>
+      new Promise((resolve, reject) => {
+        socket.open((err?: Error | null) => {
+          if (err) {
+            reject(err);
+            return;
+          }
+          resolve();
+          return;
+        });
+      });
+    await openAsync(this.socket);
     this.emit("ready");
   }
 
   public async close() {
     if (!this.socket) {
-      throw new Error("Connection is not opened");
+      return;
     }
-    await promisify(this.socket.close)();
+    const closeAsync = (socket: Serialport) =>
+      new Promise((resolve, reject) => {
+        socket.close((err?: Error | null) => {
+          if (err) {
+            reject(err);
+            return;
+          }
+          resolve();
+          return;
+        });
+      });
+    await closeAsync(this.socket);
     this.socket = undefined;
     this.emit("close");
   }
